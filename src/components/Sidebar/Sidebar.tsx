@@ -15,7 +15,9 @@ export const Sidebar = (props: ProtectedProps) => {
     <div className={props.expanded ? "sidebar sidebar-expanded" : "sidebar"}>
       <div className="header">Select Provider</div>
       {items.map((item, index) => {
-        return <SidebarTab item={item} />;
+        return (
+          <SidebarTab headExpanded={props.expanded} key={index} item={item} />
+        );
       })}
     </div>
   );

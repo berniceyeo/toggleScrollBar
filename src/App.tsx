@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Button } from "./components/Button/Button";
 import { Sidebar } from "./components/Sidebar/Sidebar";
-import axios from "axios";
+import { getApis } from "./services/api";
 
 function App() {
   const [expanded, setExpanded] = useState(false);
-  const [providers, setProviders] = useState([]);
+  const [providers, setProviders] = useState<any>([]);
 
   useEffect(() => {
-    axios.get("https://api.apis.guru/v2/providers.json").then((response) => {
-      // console.log(response.data.data);
-      setProviders(response.data.data);
+    getApis().then((response) => {
+      setProviders(response);
     });
-  });
+  }, []);
 
   const toggleNav = () => {
     setExpanded(!expanded);
