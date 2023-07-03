@@ -1,0 +1,30 @@
+.sidebar {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #3f5f7a;
+  overflow-x: hidden;
+  transition: 0.5s;
+  width: 0px;
+}
+
+.sidebar-expanded {
+  width: 300px;
+}
+
+.header {
+  padding: 10px 30px;
+  padding-top: 20px;
+  text-align: start;
+  min-width: 200px;
+  color: white;
+}
+
+.tab {
+  padding: 10px 30px;
+  text-align: start;
+  min-width: 200px;
+  color: white;
+}
