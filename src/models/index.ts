@@ -3,6 +3,7 @@ export interface ApiInfo {
     description: string;
     title: string;
     contact?: ApiContact;
+    "x-logo"?: { url: string };
   };
   link: string;
   swaggerUrl: string;

@@ -1,10 +1,11 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
-import axios from "axios";
 import { ApiInfo } from "../../models";
 import { getApi } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface ProtectedProps {
   children?: ReactNode;
@@ -14,8 +15,10 @@ interface ProtectedProps {
 
 export const SidebarTab = (props: ProtectedProps) => {
   const item = props.item;
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [details, setDetails] = useState<ApiInfo | undefined>(undefined);
+  const logo = details ? details["info"]["x-logo"] : undefined;
 
   useEffect(() => {
     setExpanded(false);
@@ -35,10 +38,20 @@ export const SidebarTab = (props: ProtectedProps) => {
       <div className={"tab-header"} onClick={handleClick}>
         <div className={"tab-header-name"}>{item ? item : ""}</div>
         <div className={"tab-header-icon"}>
-          <FontAwesomeIcon icon={faChevronDown} />
+          {expanded ? (
+            <FontAwesomeIcon icon={faChevronUp} />
+          ) : (
+            <FontAwesomeIcon icon={faChevronDown} />
+          )}
         </div>
       </div>
-      <div className={expanded ? "tab-section tab-expanded" : "tab-section"}>
+      <div
+        className={expanded ? "tab-section tab-expanded" : "tab-section"}
+        onClick={() => {
+          navigate(`/${item}`, { state: details });
+        }}
+      >
+        {logo && <img src={`${logo.url}`} alt="small-logo" />}
         {details ? details.info.title : ""}
       </div>
     </div>

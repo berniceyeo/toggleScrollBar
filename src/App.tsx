@@ -1,45 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import { Button } from "./components/Button/Button";
-import { Sidebar } from "./components/Sidebar/Sidebar";
-import { getApis } from "./services/api";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
 
 function App() {
-  const [expanded, setExpanded] = useState(false);
-  const [providers, setProviders] = useState<any>([]);
-
-  useEffect(() => {
-    getApis().then((response) => {
-      setProviders(response);
-    });
-  }, []);
-
-  const toggleNav = () => {
-    setExpanded(!expanded);
-  };
-
-  return (
-    <div className="App">
-      <div className="main-content">
-        <Sidebar expanded={expanded} items={providers} />
-        <div>
-          <div
-            onClick={toggleNav}
-            className={
-              expanded ? "overlay overlay-expanded" : "overlay-content"
-            }
-          ></div>
-          <Button
-            $disabled={expanded}
-            $color={"rgba(4,157,210)"}
-            handleClick={toggleNav}
-          >
-            Explore web APIs
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
