@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import "./Sidebar.css";
+import { SidebarTab } from "./SidebarTab";
 
 interface ProtectedProps {
   children?: ReactNode;
@@ -13,8 +14,8 @@ export const Sidebar = (props: ProtectedProps) => {
   return (
     <div className={props.expanded ? "sidebar sidebar-expanded" : "sidebar"}>
       <div className="header">Select Provider</div>
-      {items.map((item) => {
-        return <div className="tab">{item ? item : ""}</div>;
+      {items.map((item, index) => {
+        return <SidebarTab item={item} />;
       })}
     </div>
   );

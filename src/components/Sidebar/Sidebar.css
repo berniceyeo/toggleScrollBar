@@ -6,25 +6,61 @@
   right: 0;
   background-color: #3f5f7a;
   overflow-x: hidden;
+  overflow-y: scroll;
   transition: 0.5s;
   width: 0px;
 }
 
+.sidebar::-webkit-scrollbar {
+  visibility: hidden;
+}
+
 .sidebar-expanded {
-  width: 300px;
+  width: 400px;
 }
 
 .header {
-  padding: 10px 30px;
-  padding-top: 20px;
+  padding: 5px;
+  margin: 10px 20px;
   text-align: start;
   min-width: 200px;
   color: white;
 }
 
 .tab {
-  padding: 10px 30px;
+  margin: 10px 20px;
   text-align: start;
-  min-width: 200px;
+  min-width: 300px;
   color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.tab-section {
+  visibility: hidden;
+  height: 0px;
+}
+
+.tab-expanded {
+  visibility: visible;
+  height: auto;
+  margin-top: 5px;
+}
+
+.tab-header-expanded {
+  background-color: #16232e;
+}
+
+.tab-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tab-header-name {
+  grid-column: span 2;
+}
+
+.tab-header-icon {
+  justify-self: end;
 }
