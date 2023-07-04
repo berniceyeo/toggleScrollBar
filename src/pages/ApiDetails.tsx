@@ -1,15 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  Container,
-  Image,
-  TableSection,
-  Table,
-  Header,
-  SubItems,
-  ButtonContainer,
-} from "./ApiDetailsStyle";
+import { Container, Image, Header, ButtonContainer } from "./ApiDetailsStyle";
 import { Button } from "../components/Button/Button";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
+import {
+  CONTACT,
+  DESCRIPTION,
+  EXPLORE_MORE_APIS,
+  SWAGGER,
+} from "../utils/constants";
+import { SubSection } from "../components/SubSection/SubSection";
+import { SubSectionTable } from "../components/SubSection/SubSectionTable";
 
 function ApiDetails(props: any) {
   const location = useLocation();
@@ -24,57 +24,12 @@ function ApiDetails(props: any) {
           <div>{logo ? <Image src={`${logo}`} alt="logo" /> : ""}</div>
           <div>{state.info.title}</div>
         </Header>
-        <SubItems $size={"22px"} $marginBottom={"10px"}>
-          Description
-        </SubItems>
-
-        <SubItems $size={"16px"} $marginBottom={"50px"}>
-          {state.info.description ?? "Nil"}
-        </SubItems>
-        <SubItems $size={"22px"} $marginBottom={"10px"}>
-          Swagger
-        </SubItems>
-        <SubItems $size={"16px"} $marginBottom={"50px"}>
-          {state.swaggerUrl ?? "Nil"}
-        </SubItems>
-        <SubItems $size={"22px"} $marginBottom={"10px"}>
-          Contact
-        </SubItems>
-        <div>
-          <Table className="table">
-            {state.info.contact ? (
-              <>
-                {state.info.contact.email && (
-                  <>
-                    <TableSection $span={1}>Email</TableSection>
-                    <TableSection $span={7}>
-                      {state.info.contact?.email}
-                    </TableSection>
-                  </>
-                )}
-                {state.info.contact.name && (
-                  <>
-                    <TableSection $span={1}>Name</TableSection>
-                    <TableSection $span={7}>
-                      {state.info.contact?.name ?? " "}
-                    </TableSection>
-                  </>
-                )}
-
-                {state.info.contact.url && (
-                  <>
-                    <TableSection $span={1}>Url</TableSection>
-                    <TableSection $span={7}>
-                      {state.info.contact?.url}
-                    </TableSection>
-                  </>
-                )}
-              </>
-            ) : (
-              "Nil"
-            )}
-          </Table>
-        </div>
+        <SubSection
+          title={DESCRIPTION}
+          description={state.info.description ?? "Nil"}
+        />
+        <SubSection title={SWAGGER} description={state.swaggerUrl ?? "Nil"} />
+        <SubSectionTable contact={state.info.contact} title={CONTACT} />
         <ButtonContainer>
           <Button
             $disabled={false}
@@ -83,7 +38,7 @@ function ApiDetails(props: any) {
             }}
             $color={"rgba(4,157,210)"}
           >
-            Explore more APIs
+            {EXPLORE_MORE_APIS}
           </Button>
         </ButtonContainer>
       </Container>

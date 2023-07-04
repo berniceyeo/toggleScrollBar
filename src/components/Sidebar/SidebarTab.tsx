@@ -51,7 +51,9 @@ export const SidebarTab = (props: ProtectedProps) => {
           navigate(`/${item}`, { state: details });
         }}
       >
-        {logo && <img src={`${logo.url}`} alt="small-logo" />}
+        {logo && (
+          <img src={`${logo.url}`} className="sidebar-img" alt="small-logo" />
+        )}
         {details ? details.info.title : ""}
       </div>
     </div>
